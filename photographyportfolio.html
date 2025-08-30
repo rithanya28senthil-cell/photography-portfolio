@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rithanya Senthil - Photography Portfolio</title>
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+    body {background: #f8fafc; color: #1e293b;}
+
+    header {
+      background: url('https://picsum.photos/1600/500?blur') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {font-size: 3rem; margin-bottom: 10px;}
+    header p {font-size: 1.2rem; color: #e2e8f0;}
+
+    nav {
+      background: #1e293b;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    nav a:hover {background: #334155;}
+
+    section {padding: 60px 20px; max-width: 1100px; margin: auto;}
+    section h2 {text-align: center; margin-bottom: 30px; font-size: 2rem; color: #0f172a;}
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .about p {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #475569;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact input, .contact textarea {
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+    }
+    .contact button {
+      background: #1e293b;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .contact button:hover {background: #334155;}
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1e293b;
+      color: #94a3b8;
+      margin-top: 30px;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+    .lightbox span {
+      position: absolute;
+      top: 30px; right: 40px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Photography Portfolio</h1>
+    <p>Created by <b>Rithanya Senthil</b></p>
+  </header>
+
+  <nav>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://picsum.photos/id/1015/600/400" alt="Photo 1">
+      <img src="https://picsum.photos/id/1016/600/400" alt="Photo 2">
+      <img src="https://picsum.photos/id/1025/600/400" alt="Photo 3">
+      <img src="https://picsum.photos/id/1035/600/400" alt="Photo 4">
+      <img src="https://picsum.photos/id/1045/600/400" alt="Photo 5">
+      <img src="https://picsum.photos/id/1055/600/400" alt="Photo 6">
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      Hi, I’m <b>Rithanya Senthil</b>, a passionate photographer who loves to capture emotions, 
+      landscapes, and stories through the lens. 
+      This website is my digital portfolio created as part of my project work.
+    </p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Photography Portfolio | Designed by <b>Rithanya Senthil</b></p>
+  </footer>
+
+  <script>
+    // Lightbox functionality
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.createElement('div');
+    lightbox.classList.add('lightbox');
+    document.body.appendChild(lightbox);
+    const img = document.createElement('img');
+    const close = document.createElement('span');
+    close.innerHTML = "&times;";
+    lightbox.appendChild(close);
+    lightbox.appendChild(img);
+
+    galleryImages.forEach(image => {
+      image.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        img.src = image.src;
+      });
+    });
+
+    close.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Contact form alert
+    document.getElementById("contactForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      alert("Thank you for reaching out! I’ll get back to you soon.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
